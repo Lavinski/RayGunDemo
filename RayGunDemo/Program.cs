@@ -18,6 +18,8 @@ namespace RayGunDemo
                 { "/", new RootCommand() },
                 { "/good", new GoodCommand() },
                 { "/error", new ErrorCommand() },
+                { "/errors", new ErrorsCommand() },
+                { "/exceptions", new ExceptionsCommand() },
                 { "/lengthy", new LengthyCommand() },
             };
 
@@ -36,17 +38,17 @@ namespace RayGunDemo
         {
             return new LoggerConfiguration()
                 .WriteTo.Seq("http://localhost:5341/")
-                /*.WriteTo.Raygun(
-                    applicationKey: null,
+                .WriteTo.Raygun(
+                    applicationKey: "",
                     wrapperExceptions: null,
                     userNameProperty: "UserName",
                     applicationVersionProperty: "ApplicationVersion",
                     restrictedToMinimumLevel: LogEventLevel.Error,
                     formatProvider: null,
                     tags: null,
-                    ignoredFormFieldNames: null)*/
+                    ignoredFormFieldNames: null)
                 .Enrich.WithProperty("UserName", "dlit")
-                .Enrich.WithProperty("ApplicationVersion", "1.0.0")
+                .Enrich.WithProperty("ApplicationVersion", "1.0.1")
                 .CreateLogger();
         }
 
